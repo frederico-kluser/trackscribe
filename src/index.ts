@@ -11,6 +11,7 @@ import fs from "node:fs/promises";
 import { runPipeline, type PipelineOptions } from "./pipeline.js";
 import { groupIntoTurns } from "./merge.js";
 import { BinaryNotFoundError, CommandFailedError } from "./exec.js";
+import { setDebug } from "./debug.js";
 
 const HELP = `trackscribe — multi-track MKV → speaker-attributed JSON
 
@@ -21,20 +22,22 @@ OPTIONS
   -o, --out <file>        Output JSON path (default: unified.json; "-" = stdout)
       --turns             Also write a grouped "turns" view (default: turns.json)
       --format <wav|mp3>  Extraction format (default: wav)
-      --diarize           Diarize the system track with WhisperX (needs HF_TOKEN)
-      --system-track <N>  Track id treated as the multi-speaker system mix (default: 1)
-      --min-speakers <N>  Lower bound for diarization clustering
-      --max-speakers <N>  Upper bound for diarization clustering
+      --diarize           Diarize EVERY audio track via pyannoteAI cloud (needs PYANNOTEAI_API_KEY)
+      --system-track <N>  Track id used for the friendly fallback label (default: 1)
+      --min-speakers <N>  Lower bound for diarization clustering (hint, applied to all tracks)
+      --max-speakers <N>  Upper bound for diarization clustering (hint, applied to all tracks)
+      --verbose           Verbose debug logging to stderr (probe, chunks, jobs, polling, alignment)
   -h, --help              Show this help
 
 ENVIRONMENT
   OPENAI_API_KEY          Required for whisper-1 transcription
-  HF_TOKEN                Required only for --diarize (WhisperX + pyannote)
+  PYANNOTEAI_API_KEY      Required only for --diarize (cloud diarization, precision-2)
+  PYANNOTEAI_BASE_URL     Optional override of the pyannoteAI base URL
 
 EXAMPLES
   trackscribe call.mkv
   trackscribe call.mkv -o transcript.json --turns
-  trackscribe call.mkv --diarize --system-track 1 --min-speakers 2 --max-speakers 4
+  trackscribe call.mkv --diarize --verbose
 `;
 
 function parseIntOrUndefined(v: string | undefined, name: string): number | undefined {
@@ -55,6 +58,7 @@ async function main(): Promise<void> {
       "system-track": { type: "string" },
       "min-speakers": { type: "string" },
       "max-speakers": { type: "string" },
+      verbose: { type: "boolean", default: false },
       help: { type: "boolean", short: "h", default: false },
     },
   });
@@ -65,6 +69,7 @@ async function main(): Promise<void> {
   }
 
   const input = positionals[0]!;
+  setDebug(!!values.verbose);
   const format = values.format === "mp3" ? "mp3" : "wav";
   if (values.format !== "wav" && values.format !== "mp3") {
     throw new Error(`--format must be "wav" or "mp3" (got "${values.format}").`);
@@ -75,16 +80,17 @@ async function main(): Promise<void> {
       "[trackscribe] OPENAI_API_KEY is not set — transcription will fail. Add it to .env or your environment.",
     );
   }
-  if (values.diarize && !process.env.HF_TOKEN) {
+  if (values.diarize && !process.env.PYANNOTEAI_API_KEY) {
     console.warn(
-      "[trackscribe] --diarize was requested but HF_TOKEN is not set; the system track will be transcribed as a single \"Call\" speaker instead.",
+      "[trackscribe] --diarize was requested but PYANNOTEAI_API_KEY is not set; tracks will be transcribed WITHOUT diarization.",
     );
   }
 
   const opts: PipelineOptions = {
     diarize: values.diarize,
     format,
-    hfToken: process.env.HF_TOKEN,
+    pyannoteApiKey: process.env.PYANNOTEAI_API_KEY,
+    pyannoteBaseUrl: process.env.PYANNOTEAI_BASE_URL,
     systemTrack: parseIntOrUndefined(values["system-track"], "system-track"),
     minSpeakers: parseIntOrUndefined(values["min-speakers"], "min-speakers"),
     maxSpeakers: parseIntOrUndefined(values["max-speakers"], "max-speakers"),

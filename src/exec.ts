@@ -1,8 +1,8 @@
 /**
  * One typed wrapper around `execFile` for every external binary
- * (ffmpeg / ffprobe / whisperx). Array args, NO shell — so untrusted file paths
- * can never be interpreted as shell metacharacters. Maps the two failure modes
- * that callers care about: a missing binary (`ENOENT`) vs a non-zero exit.
+ * (ffmpeg / ffprobe). Array args, NO shell — so untrusted file paths can never be
+ * interpreted as shell metacharacters. Maps the two failure modes that callers
+ * care about: a missing binary (`ENOENT`) vs a non-zero exit.
  *
  * ---
  *
@@ -21,14 +21,13 @@ export interface RunResult {
 }
 
 export interface RunOptions {
-  /** Max captured output bytes; defaults to 64 MiB (ffprobe JSON / whisperx logs can be large). */
+  /** Max captured output bytes; defaults to 64 MiB (ffprobe JSON can be large). */
   maxBuffer?: number;
 }
 
 const INSTALL_HINTS: Record<string, string> = {
   ffmpeg: "Install ffmpeg (e.g. `sudo apt install ffmpeg` or `brew install ffmpeg`).",
   ffprobe: "Install ffmpeg — it provides ffprobe (e.g. `sudo apt install ffmpeg`).",
-  whisperx: "Install WhisperX (e.g. `pipx install whisperx`). Only needed for --diarize.",
 };
 
 /** Thrown when the binary is not on PATH. Carries an install hint. */

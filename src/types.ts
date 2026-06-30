@@ -35,7 +35,7 @@ export interface AudioTrack {
 
 /** A single timestamped, speaker-attributed transcript entry. */
 export interface Segment {
-  /** Friendly speaker label, e.g. `Host (microphone)` or `system/SPEAKER_00`. */
+  /** Friendly speaker label, e.g. `Host (microphone)` or `t1/SPEAKER_00`. */
   speaker: string;
   /** Numeric track id this segment came from (the audio-relative index). */
   track: number;
@@ -50,7 +50,7 @@ export interface Segment {
 /** Alias kept for readability at call sites that tag per-track segments. */
 export type TaggedSegment = Segment;
 
-/** Word-level entry as emitted by WhisperX (`words[]`). */
+/** Word-level timing entry (optional per-segment detail). */
 export interface Word {
   word: string;
   start?: number;

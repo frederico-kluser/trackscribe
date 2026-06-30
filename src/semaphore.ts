@@ -4,14 +4,14 @@
  * On `release`, if a waiter is queued the permit is handed straight to it
  * instead of being returned to the pool and re-acquired — this avoids the
  * classic race where a just-freed permit is stolen by a newcomer ahead of an
- * earlier waiter. Used to serialize GPU/WhisperX work (max 1) while bounding
- * parallel Whisper API calls (max N).
+ * earlier waiter. Used to bound parallel Whisper API calls and to limit
+ * concurrent cloud diarization jobs.
  *
  * ---
  *
  * Semáforo de contagem com transferência direta de permissão, usado para
- * serializar o trabalho de GPU/WhisperX (máx 1) e limitar as chamadas
- * paralelas à API do Whisper (máx N).
+ * limitar as chamadas paralelas à API do Whisper e os jobs de diarização na
+ * nuvem.
  */
 export class Semaphore {
   private permits: number;

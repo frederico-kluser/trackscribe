@@ -1,7 +1,7 @@
 {
   "name": "trackscribe",
   "version": "0.1.0",
-  "description": "Turn multi-track MKV recordings (OBS mic + system audio) into one time-ordered, speaker-attributed JSON transcript — OpenAI Whisper per track, optional WhisperX diarization.",
+  "description": "Turn multi-track MKV recordings (OBS mic + system audio) into one time-ordered, speaker-attributed JSON transcript — OpenAI Whisper per track, optional pyannoteAI cloud diarization.",
   "type": "module",
   "bin": {
     "trackscribe": "dist/index.js"
@@ -29,6 +29,8 @@
     "build": "tsc -p tsconfig.build.json",
     "clean": "node -e \"fs.rmSync('dist',{recursive:true,force:true})\"",
     "dev": "tsx src/index.ts",
+    "doctor": "node --import tsx scripts/doctor.ts",
+    "clip": "node --import tsx scripts/clip.ts",
     "start": "node dist/index.js",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "node --import tsx --test test/*.test.ts",
@@ -37,7 +39,8 @@
   },
   "keywords": [
     "whisper",
-    "whisperx",
+    "pyannote",
+    "pyannoteai",
     "openai",
     "transcription",
     "speaker-diarization",

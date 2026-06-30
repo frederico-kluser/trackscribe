@@ -61,8 +61,8 @@ test("groupIntoTurns breaks when gap exceeds maxGap", () => {
 
 test("groupIntoTurns breaks on speaker change even at gap 0 (same track)", () => {
   const segs = [
-    seg(1, 0, 1, "system/SPEAKER_00", "a"),
-    seg(1, 1, 2, "system/SPEAKER_01", "b"),
+    seg(1, 0, 1, "t1/SPEAKER_00", "a"),
+    seg(1, 1, 2, "t1/SPEAKER_01", "b"),
   ];
   assert.equal(groupIntoTurns(segs, 1.5).length, 2);
 });
