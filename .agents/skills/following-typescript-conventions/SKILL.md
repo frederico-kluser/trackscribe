@@ -24,6 +24,8 @@ The high-value items below are the ones `tsc` does NOT catch:
 
 4. **No linter/formatter configured.** Style is `.editorconfig` (2-space, LF, final newline). Match the surrounding file; there is no eslint/prettier to auto-fix, so keep diffs clean by hand.
 
+5. **Dependency hygiene — don't add a utility dep for what Node does natively.** The `clean` script is `node -e "fs.rmSync(...)"`, not a `rimraf`/`del-cli` dependency (`package.json:30@aa3d3c2`); runtime deps are only `openai` + `dotenv`. Prefer a Node one-liner over a small utility package. Scope: build/utility scripts.
+
 **Default + escape hatch:** treat `npm run typecheck` as the gate for "is this written correctly." If it passes and the 4 non-tsc items above hold, the edit follows house conventions.
 
 ## Evolution note
