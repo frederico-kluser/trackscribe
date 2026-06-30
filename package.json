@@ -1,0 +1,71 @@
+{
+  "name": "trackscribe",
+  "version": "0.1.0",
+  "description": "Turn multi-track MKV recordings (OBS mic + system audio) into one time-ordered, speaker-attributed JSON transcript — OpenAI Whisper per track, optional WhisperX diarization.",
+  "type": "module",
+  "bin": {
+    "trackscribe": "dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "README.pt-BR.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "node -e \"fs.rmSync('dist',{recursive:true,force:true})\"",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --import tsx --test \"test/**/*.test.ts\"",
+    "test:coverage": "node --import tsx --test --experimental-test-coverage \"test/**/*.test.ts\"",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "whisper",
+    "whisperx",
+    "openai",
+    "transcription",
+    "speaker-diarization",
+    "speech-to-text",
+    "ffmpeg",
+    "mkv",
+    "obs",
+    "multitrack",
+    "cli",
+    "typescript"
+  ],
+  "author": "Frederico Guilherme Kluser de Oliveira",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frederico-kluser/trackscribe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/frederico-kluser/trackscribe/issues"
+  },
+  "homepage": "https://github.com/frederico-kluser/trackscribe#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "openai": "^6.45.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.1",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
+  }
+}

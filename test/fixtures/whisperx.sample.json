@@ -1,0 +1,33 @@
+{
+  "language": "en",
+  "segments": [
+    {
+      "start": 0.008,
+      "end": 1.143,
+      "text": " Welcome back.",
+      "speaker": "SPEAKER_00",
+      "words": [
+        { "word": "Welcome", "start": 0.663, "end": 0.903, "score": 0.906, "speaker": "SPEAKER_00" },
+        { "word": "back.", "start": 0.943, "end": 1.143, "score": 0.928, "speaker": "SPEAKER_00" }
+      ]
+    },
+    {
+      "start": 1.5,
+      "end": 3.0,
+      "text": " Glad to be here.",
+      "speaker": "SPEAKER_01",
+      "words": [
+        { "word": "Glad", "start": 1.5, "end": 1.8, "score": 0.9, "speaker": "SPEAKER_01" }
+      ]
+    },
+    {
+      "start": 3.2,
+      "end": 4.0,
+      "text": " £13.60, please.",
+      "words": [
+        { "word": "please.", "start": 3.6, "end": 4.0, "score": 0.8 }
+      ]
+    }
+  ],
+  "word_segments": []
+}

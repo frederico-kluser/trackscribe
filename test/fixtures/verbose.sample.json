@@ -1,0 +1,40 @@
+{
+  "task": "transcribe",
+  "language": "english",
+  "duration": 12.0,
+  "text": "Hey, thanks for hopping on the call. So I wanted to walk through the roadmap.",
+  "segments": [
+    {
+      "id": 0,
+      "start": 0.0,
+      "end": 3.2,
+      "text": " Hey, thanks for hopping on the call.",
+      "no_speech_prob": 0.01,
+      "avg_logprob": -0.2
+    },
+    {
+      "id": 1,
+      "start": 5.6,
+      "end": 9.1,
+      "text": " So I wanted to walk through the roadmap.",
+      "no_speech_prob": 0.05,
+      "avg_logprob": -0.25
+    },
+    {
+      "id": 2,
+      "start": 9.1,
+      "end": 10.0,
+      "text": " (background noise)",
+      "no_speech_prob": 0.92,
+      "avg_logprob": -0.9
+    },
+    {
+      "id": 3,
+      "start": 10.0,
+      "end": 10.1,
+      "text": "    ",
+      "no_speech_prob": 0.1,
+      "avg_logprob": -0.3
+    }
+  ]
+}

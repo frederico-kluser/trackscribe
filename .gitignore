@@ -1,0 +1,23 @@
+node_modules/
+dist/
+*.tsbuildinfo
+coverage/
+
+# secrets
+.env
+.env.*
+!.env.example
+
+# scratch media from manual runs (fixtures are synthesized into tmp, never here)
+*.wav
+*.mp3
+*.mkv
+!test/fixtures/**
+
+# output
+unified.json
+turns.json
+*.turns.json
+
+.DS_Store
+*.log
