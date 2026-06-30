@@ -4,13 +4,31 @@
  * payload on stdin and asserts the exit code (0 = allow, 2 = block). Run:
  * `node .agents/scripts/test-hooks.mjs`. Exit 0 = all pass, 1 = a failure.
  */
-import { spawnSync } from "node:child_process";
+import { spawnSync, execSync } from "node:child_process";
+import { writeFileSync, rmSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const HOOKS = join(ROOT, ".agents", "hooks");
 const env = { ...process.env, CLAUDE_PROJECT_DIR: ROOT };
+
+// Deterministic token fixtures (tokens are HEAD-stamped and go stale after a
+// commit, so synthesize them here instead of depending on prior eval runs).
+let HEAD = "";
+try {
+  HEAD = execSync("git rev-parse --short HEAD", { cwd: ROOT }).toString().trim();
+} catch {
+  /* not a git repo */
+}
+const tokenPath = (s) => join(ROOT, ".agents", "skills", s, ".eval-pass");
+writeFileSync(
+  tokenPath("following-typescript-conventions"),
+  JSON.stringify({ skill: "following-typescript-conventions", head: HEAD, ok: true }) + "\n",
+);
+if (existsSync(tokenPath("working-with-ffmpeg-media"))) {
+  rmSync(tokenPath("working-with-ffmpeg-media"));
+}
 
 function run(hook, payload, extraEnv = {}) {
   const r = spawnSync("node", [join(HOOKS, hook)], {

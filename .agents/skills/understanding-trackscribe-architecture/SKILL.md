@@ -21,11 +21,11 @@ Starting any non-trivial task; deciding where new code goes; "where does X live 
 - infra: `exec.ts` (no-shell process wrapper), `env.ts` (dotenv override), `semaphore.ts`.
 - CLI: `index.ts` (`parseArgs`, output routing).
 
-**The one contract that matters — `Segment`** = `{speaker, track, start, end, text}` (`src/types.ts:39-46@1a7f821`). Every source (Whisper or WhisperX) returns `Segment[]`; `DiarizedSegment extends Segment` only adds optional `words` (`types.ts:55-65@1a7f821`). This is why `pipeline.ts` merges sources with no cast — keep it that way: new sources must return `Segment[]`.
+**The one contract that matters — `Segment`** = `{speaker, track, start, end, text}` (`src/types.ts:39-46@1a7f821`). Every source (Whisper or WhisperX) returns `Segment[]`; `DiarizedSegment extends Segment` only adds optional `words` (`src/types.ts:55-65@1a7f821`). This is why `pipeline.ts` merges sources with no cast — keep it that way: new sources must return `Segment[]`.
 
-**`audioIndex` vs `absoluteIndex`** (both 0-based): `audioIndex` is audio-relative, used in `-map 0:a:N`; `absoluteIndex` is the container stream index (`0:0` video, `0:1` audio…). `probe.ts:46-48@1a7f821` maps one to the other. Mixing them up is the classic off-by-one here.
+**`audioIndex` vs `absoluteIndex`** (both 0-based): `audioIndex` is audio-relative, used in `-map 0:a:N`; `absoluteIndex` is the container stream index (`0:0` video, `0:1` audio…). `src/probe.ts:46-48@1a7f821` maps one to the other. Mixing them up is the classic off-by-one here.
 
-**Concurrency model** (`pipeline.ts:72-73@1a7f821`): an `api` semaphore (default 4) bounds Whisper calls; a `gpu` semaphore (1) serializes WhisperX. The `api` permit wraps only the leaf HTTP call, never a whole track job — wrapping a whole job would deadlock. Preserve this when adding parallel work.
+**Concurrency model** (`src/pipeline.ts:72-73@1a7f821`): an `api` semaphore (default 4) bounds Whisper calls; a `gpu` semaphore (1) serializes WhisperX. The `api` permit wraps only the leaf HTTP call, never a whole track job — wrapping a whole job would deadlock. Preserve this when adding parallel work.
 
 **Where to add common things:**
 - A CLI flag → `index.ts` `parseArgs` options + thread through `PipelineOptions` (`pipeline.ts:32-47`) + document in BOTH `README.md` and `README.pt-BR.md`.
