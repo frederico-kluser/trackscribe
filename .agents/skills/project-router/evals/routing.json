@@ -1,0 +1,4 @@
+{
+  "must_trigger": ["add a feature to the project", "fix a bug in the code", "refactor this module", "make a change to the cli"],
+  "must_not_trigger": ["explain what tcp protocol is"]
+}

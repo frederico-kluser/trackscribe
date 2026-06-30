@@ -1,0 +1,4 @@
+{
+  "must_trigger": ["add a test for the mapper", "the ci test is failing", "how do I run the tests", "write a fixture based test"],
+  "must_not_trigger": ["extract the audio track"]
+}

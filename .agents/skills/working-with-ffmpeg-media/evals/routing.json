@@ -1,0 +1,4 @@
+{
+  "must_trigger": ["extract audio from the mkv", "probe the tracks", "the audio chunking is wrong", "detect silence in a track"],
+  "must_not_trigger": ["diarize the remote speakers"]
+}

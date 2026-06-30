@@ -1,0 +1,4 @@
+{
+  "must_trigger": ["where does the merge stage live", "how does the pipeline connect", "where do I add a new module", "explain the data flow"],
+  "must_not_trigger": ["how do I run the tests"]
+}

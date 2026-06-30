@@ -1,0 +1,4 @@
+{
+  "must_trigger": ["transcribe with whisper", "diarize the system track", "the speaker labels are wrong", "call the openai audio api"],
+  "must_not_trigger": ["how do I write a unit test"]
+}

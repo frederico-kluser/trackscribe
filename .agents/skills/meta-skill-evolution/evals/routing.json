@@ -1,0 +1,4 @@
+{
+  "must_trigger": ["should I update a skill", "propose a new skill", "persist this verified learning"],
+  "must_not_trigger": ["extract audio from mkv"]
+}

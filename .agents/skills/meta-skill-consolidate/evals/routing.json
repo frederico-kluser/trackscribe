@@ -1,0 +1,4 @@
+{
+  "must_trigger": ["garbage collect the skill library", "deduplicate redundant skills", "consolidate skills and resolve conflicts"],
+  "must_not_trigger": ["fix a bug in transcribe"]
+}

@@ -1,0 +1,4 @@
+{
+  "must_trigger": ["how should I write imports here", "add a new typescript file", "spawn ffmpeg from code", "how do I read an env variable"],
+  "must_not_trigger": ["what does the product do for users"]
+}
