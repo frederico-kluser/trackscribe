@@ -15,9 +15,9 @@ Writing/modifying/running tests; debugging a CI test failure; needing the no-net
 - **Runner:** `node --import tsx --test test/*.test.ts` (`package.json:34@1a7f821`). The glob is **unquoted on purpose** — the shell expands it to explicit file paths. Node 20's test runner does NOT expand globs itself (Node 21+ does); a quoted `"test/**/*.test.ts"` fails on Node 20 with "Could not find …". Keep it shell-expanded and flat in `test/`.
 - **Tests are typechecked too** (`tsconfig.json:23` includes `test`), so strict rules apply in tests — use `arr[i]!` for indexed access, `import type` for types, and `.js` import extensions (`import { run } from "../src/exec.js"`).
 - **No network, ever.** Two patterns:
-  1. **Pure mappers + fixtures:** import the exported pure function (`segmentsFromVerboseJson`, `mapWhisperxJson`) and feed a JSON fixture from `test/fixtures/` (`test/transcribe.test.ts:14-28@1a7f821`). Never call the OpenAI API in a test.
+  1. **Pure mappers + fixtures:** import the exported pure function (`segmentsFromVerboseJson`, or `alignSegmentsToTurns`/`assessAlignedDiarization` from `align.ts`) and feed a JSON fixture from `test/fixtures/` (`test/transcribe.test.ts:14-28@1a7f821`, `test/align.test.ts`). Never call the OpenAI API in a test.
   2. **Synthesized media:** generate a fixture with ffmpeg `lavfi` (e.g. a 2-track MKV from `sine`/`anullsrc`) in a `fs.mkdtemp` dir and clean up with `t.after` (`test/integration.test.ts@1a7f821`).
-- **Skip when a binary is absent**, don't fail: compute the predicate with top-level await, then gate the test — `test(name, { skip: !hasFfmpeg }, fn)` (`test/integration.test.ts:14-17@1a7f821`). Same for `!hasWhisperx` so diarization e2e skips in CI.
+- **Skip when a binary is absent**, don't fail: compute the predicate with top-level await, then gate the test — `test(name, { skip: !hasFfmpeg }, fn)` (`test/integration.test.ts:14-17@1a7f821`). Network clients are NOT binary-gated: the pyannoteAI client is tested by swapping the global `fetch` for a routed mock and restoring it in `t.after` (`test/pyannote.test.ts`), never the live API.
 
 ## Procedure (adding a test)
 1. Put it in `test/<area>.test.ts` (flat — the glob is single-level).

@@ -8,7 +8,7 @@ metadata:
 # Following trackscribe TypeScript conventions
 
 ## When to use
-Any `.ts` edit; adding imports; spawning ffmpeg/ffprobe/whisperx; reading env or secrets; constructing/using the OpenAI client.
+Any `.ts` edit; adding imports; spawning ffmpeg/ffprobe; reading env or secrets; constructing/using the OpenAI client.
 
 ## Injected knowledge
 

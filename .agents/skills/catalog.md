@@ -13,7 +13,7 @@ this index).
 | [understanding-trackscribe-architecture](./understanding-trackscribe-architecture/SKILL.md) | knowledge | …is non-trivial / cross-module, or asks where code lives or how stages connect | `npm run build` |
 | [following-typescript-conventions](./following-typescript-conventions/SKILL.md) | knowledge | …edits any `.ts`, adds an import, spawns a process, reads env, or touches the OpenAI client | `npm run typecheck` |
 | [working-with-ffmpeg-media](./working-with-ffmpeg-media/SKILL.md) | task | …touches `probe/extract/silence/chunk`, audio extraction, codecs, 16 kHz mono, or chunking | `npm test` |
-| [transcribing-and-diarizing](./transcribing-and-diarizing/SKILL.md) | knowledge | …touches Whisper/WhisperX, the OpenAI audio API, speaker labels, or diarization | `npm test` |
+| [transcribing-and-diarizing](./transcribing-and-diarizing/SKILL.md) | knowledge | …touches Whisper, pyannoteAI cloud diarization, the OpenAI audio API, speaker labels, or overlap alignment | `npm test` |
 | [testing-trackscribe](./testing-trackscribe/SKILL.md) | task | …adds/modifies/runs tests, or hits a CI test failure | `npm test` |
 | [meta-skill-evolution](./meta-skill-evolution/SKILL.md) | meta | …completes and may have produced an important, verified learning, or hit an uncovered area | skill-lint + memory-pipeline gate |
 | [meta-skill-consolidate](./meta-skill-consolidate/SKILL.md) | meta | …is periodic GC of the skill library (out-of-band) | skill-lint + regression gate |
