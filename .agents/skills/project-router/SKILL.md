@@ -24,10 +24,10 @@ At the very start of EVERY task in this repo — any change/fix/feature/analysis
 5. **Assemble the skill CHAIN** (order + what can run in parallel via isolated-context subagents). Default order: `understanding-trackscribe-architecture` → `following-typescript-conventions` → domain skill(s) → `testing-trackscribe`.
 6. **Load the selected skills' knowledge BEFORE implementing.**
 7. **Execute the chain following `TASK_PLAN.md`.** End every code change by running `npm run typecheck` and `npm test`.
-8. **ON COMPLETION:** (a) run each involved TASK skill's `<evolution>` (the verified memory pipeline); for knowledge-skill updates or a new area, invoke `meta-skill-evolution`. (b) **DELETE `TASK_PLAN.md`** — it must not remain in the repo.
+8. **ON COMPLETION:** (a) run each involved TASK skill's registo de aprendizado (memória CoALA local) (the verified memory pipeline); for knowledge-skill updates or a new area, invoke a memória CoALA local (`coala.py add`). (b) **DELETE `TASK_PLAN.md`** — it must not remain in the repo.
 
 ## Rules
-- If no skill covers the task, invoke `meta-skill-evolution` to PROPOSE a new skill (a draft for human review, never a direct publish).
+- If no skill covers the task, invoke the local CoALA memory (`coala.py add`) to PROPOSE a new skill (a draft for human review, never a direct publish).
 - Skills with broad side effects (deploy, structural rewrites) are NOT auto-invocable without explicit user confirmation.
 - Never skip the evolution step on completion. Never leave `TASK_PLAN.md` behind.
 - `TASK_PLAN.md` is disposable and deleted at the end. The bootstrap artifacts (`.agents/artifacts/project-analysis.md`, `skill-map.md`, `validation-report.md`, `.agents/skills/catalog.md`, `.agents/skills/.bootstrap-state.json`) are NOT — never delete them.

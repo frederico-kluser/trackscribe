@@ -26,5 +26,5 @@ Editing `probe.ts` / `extract.ts` / `silence.ts` / `chunk.ts`; anything about ex
 4. Add/extend a test that **synthesizes** a fixture with ffmpeg `lavfi` (no real media, no network) — see `testing-trackscribe`.
 5. Run the verification signal: `npm test` (must stay green; `integration.test.ts` + `silence.test.ts` exercise this domain).
 
-## <evolution>
-On task completion, run the memory pipeline (`.agents/skills/meta-skill-evolution`). Update THIS SKILL.md directly ONLY if the learning is important (non-obvious, changes how media tasks are done) AND externally verified — here that means `npm test` passed after the change, or the cited source supports the claim. Detect conflicts and REPLACE the stale passage (don't append a competing rule); keep provenance `file:line@hash`; keep the body lean. If nothing important-and-verified emerged, write nothing. The skill update is a separate git commit.
+## registo de aprendizado (memória CoALA local)
+On task completion, run the memory pipeline (`.agents/skills/a memória CoALA local (`coala.py add`)`). Update THIS SKILL.md directly ONLY if the learning is important (non-obvious, changes how media tasks are done) AND externally verified — here that means `npm test` passed after the change, or the cited source supports the claim. Detect conflicts and REPLACE the stale passage (don't append a competing rule); keep provenance `file:line@hash`; keep the body lean. If nothing important-and-verified emerged, write nothing. The skill update is a separate git commit.

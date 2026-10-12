@@ -15,11 +15,9 @@ this index).
 | [working-with-ffmpeg-media](./working-with-ffmpeg-media/SKILL.md) | task | …touches `probe/extract/silence/chunk`, audio extraction, codecs, 16 kHz mono, or chunking | `npm test` |
 | [transcribing-and-diarizing](./transcribing-and-diarizing/SKILL.md) | knowledge | …touches Whisper/WhisperX, the OpenAI audio API, speaker labels, or diarization | `npm test` |
 | [testing-trackscribe](./testing-trackscribe/SKILL.md) | task | …adds/modifies/runs tests, or hits a CI test failure | `npm test` |
-| [meta-skill-evolution](./meta-skill-evolution/SKILL.md) | meta | …completes and may have produced an important, verified learning, or hit an uncovered area | skill-lint + memory-pipeline gate |
-| [meta-skill-consolidate](./meta-skill-consolidate/SKILL.md) | meta | …is periodic GC of the skill library (out-of-band) | skill-lint + regression gate |
 
 ## Typical chains
-- **bug fix / feature in a domain:** `understanding-architecture` → `following-typescript-conventions` → the domain skill (`working-with-ffmpeg-media` and/or `transcribing-and-diarizing`) → `testing-trackscribe` → on completion, the task skills' `<evolution>`.
+- **bug fix / feature in a domain:** `understanding-architecture` → `following-typescript-conventions` → the domain skill (`working-with-ffmpeg-media` and/or `transcribing-and-diarizing`) → `testing-trackscribe` → on completion, the task skills' registo de aprendizado (memória CoALA local).
 - **test-only change:** `testing-trackscribe` (+ `following-typescript-conventions` if editing `.ts`).
 - **"where/how does X work":** `understanding-trackscribe-architecture` alone.
 
@@ -27,4 +25,4 @@ this index).
 - Almost every code task loads `following-typescript-conventions`.
 - `working-with-ffmpeg-media` feeds `transcribing-and-diarizing` (extraction → transcription); order them that way; independent reads can run as parallel isolated-context subagents.
 - Any code change ends by running `npm test` (and `npm run typecheck`).
-- New area with no skill → `meta-skill-evolution` proposes a draft skill (human-reviewed), never auto-publishes.
+- New area with no skill → a memória CoALA local (`coala.py add`) proposes a draft skill (human-reviewed), never auto-publishes.

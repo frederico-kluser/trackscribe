@@ -26,5 +26,5 @@ Writing/modifying/running tests; debugging a CI test failure; needing the no-net
 4. Gate any binary-dependent test with `{ skip: !hasX }`.
 5. Run the verification signal: `npm test` (and `npm run typecheck`, since tests are typechecked).
 
-## <evolution>
-On task completion, run the memory pipeline (`.agents/skills/meta-skill-evolution`). Update THIS SKILL.md directly ONLY if the learning is important AND externally verified (here: `npm test` passed after the change, or the cited source supports it). Detect conflicts and REPLACE the stale passage; keep provenance and stay lean. If nothing important-and-verified emerged, write nothing. Commit the skill update separately.
+## registo de aprendizado (memória CoALA local)
+On task completion, run the memory pipeline (`.agents/skills/a memória CoALA local (`coala.py add`)`). Update THIS SKILL.md directly ONLY if the learning is important AND externally verified (here: `npm test` passed after the change, or the cited source supports it). Detect conflicts and REPLACE the stale passage; keep provenance and stay lean. If nothing important-and-verified emerged, write nothing. Commit the skill update separately.

@@ -23,4 +23,4 @@ Editing `transcribe.ts` / `diarizeTrack.ts`; anything about Whisper, WhisperX, t
 Oversized inputs are split before transcription — see `working-with-ffmpeg-media` (24 MB cap, timestamp re-absolutization).
 
 ## Evolution note
-Knowledge skill (no `<evolution>`). Updated only via `meta-skill-evolution` after `npm test` (the transcribe/diarize specs) or the cited source confirms the change; replace the stale passage, keep it lean.
+Knowledge skill (no registo de aprendizado (memória CoALA local)). Updated only via memória CoALA local (`coala.py add`) after `npm test` (the transcribe/diarize specs) or the cited source confirms the change; replace the stale passage, keep it lean.

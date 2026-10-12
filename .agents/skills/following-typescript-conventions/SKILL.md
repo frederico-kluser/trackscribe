@@ -29,4 +29,4 @@ The high-value items below are the ones `tsc` does NOT catch:
 **Default + escape hatch:** treat `npm run typecheck` as the gate for "is this written correctly." If it passes and the 4 non-tsc items above hold, the edit follows house conventions.
 
 ## Evolution note
-Knowledge skill (no `<evolution>`). Updated only via `meta-skill-evolution` after `npm run typecheck` (or the cited file) confirms the change; the stale passage is replaced, not appended.
+Knowledge skill (no registo de aprendizado (memória CoALA local)). Updated only via memória CoALA local (`coala.py add`) after `npm run typecheck` (or the cited file) confirms the change; the stale passage is replaced, not appended.

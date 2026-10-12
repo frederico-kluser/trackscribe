@@ -35,4 +35,4 @@ Starting any non-trivial task; deciding where new code goes; "where does X live 
 For exact signatures, read the cited file directly — provenance lines above are the index. `npm run build` (this skill's verification signal) fails if a structural claim here drifts out of sync with the code.
 
 ## Evolution note
-This is a knowledge skill (no end-of-task `<evolution>`). It is updated only via `meta-skill-evolution` after an external signal (here, `npm run build`) confirms a structural change, replacing the stale passage rather than appending.
+This is a knowledge skill (no end-of-task registo de aprendizado (memória CoALA local)). It is updated only via memória CoALA local (`coala.py add`) after an external signal (here, `npm run build`) confirms a structural change, replacing the stale passage rather than appending.
